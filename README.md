@@ -47,6 +47,8 @@
 <h1 align="left"></h1>
 
 - QuickChat App combines real-time messaging with fun and expressive tools, offering an interactive and vibrant chat experience for everyone. 🎈💬
+
+<h1 align="left"> </h1>
   
 <h1 align="center"> 🌜 Dark Mode 🌜 </h1>
 
