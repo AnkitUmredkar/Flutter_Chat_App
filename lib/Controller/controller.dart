@@ -9,9 +9,14 @@ class Controller extends GetxController{
   TextEditingController txtPhone = TextEditingController();
   RxString currentUserName = ''.obs;
   Rx<dynamic> currentUserImg = ''.obs;
+  RxBool isDarkMode = true.obs;
 
   void showCurrentUser(var name, var img){
     currentUserName.value = name;
     currentUserImg.value = img;
+  }
+
+  void toggleTheme(bool value){
+    isDarkMode.value = value;
   }
 }

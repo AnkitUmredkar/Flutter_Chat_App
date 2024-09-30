@@ -44,6 +44,14 @@ dependencies:
   google_sign_in: ^6.2.1
   animations: ^2.0.11
   cloud_firestore: ^5.4.0
+  animate_do: ^3.3.4
+  shimmer: ^3.0.0
+  image_picker: ^1.1.2
+  intl: ^0.19.0
+  flutter_local_notifications: ^17.2.3
+  firebase_messaging: ^15.1.2
+  zego_uikit_prebuilt_call: ^4.15.13
+  firebase_storage: ^12.3.2
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +89,8 @@ flutter:
   assets:
     - assets/LoginPage/
     - assets/SplashScreen/
+    - assets/placeholder.jpeg
+    - assets/placeholder.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

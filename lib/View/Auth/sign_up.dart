@@ -1,13 +1,14 @@
-import 'package:animated_button/animated_button.dart';
+import 'package:chatting_app/Components/my_button.dart';
 import 'package:chatting_app/Model/user_model.dart';
 import 'package:chatting_app/Services/auth_services.dart';
 import 'package:chatting_app/Services/cloud_firestore_service.dart';
 import 'package:chatting_app/View/Auth/sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Components/my_textField.dart';
-import '../../Global/global.dart';
+import '../../global.dart';
 import '../Home/home_page.dart';
 
 final GlobalKey<FormState> _formKey = GlobalKey();
@@ -33,8 +34,8 @@ class SignUp extends StatelessWidget {
                 child: Stack(
                   children:[
                     Positioned(
-                      top: -180,
-                      left: -101,
+                      top: -(height * 0.225),//-180,
+                      left: -(width * 0.225),//-101,
                       child: Container(
                         height: width * 1.12,//450,
                         width: width * 1.12,//450,
@@ -68,84 +69,92 @@ class SignUp extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(18, height * 0.027, 18, 8),//height * 0.055
+                child: Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.fromLTRB(18, height * 0.027, 18, 8),//height * 0.055
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
                         Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
                               'Fill the below information to create account',
-                              style: TextStyle(fontFamily: 'pr'),
+                              style: TextStyle(fontFamily: 'pr',color: Colors.black),
                             )),
                         SizedBox(height: height * 0.027),
                         //todo ---------------------------------------> name
                         MyTextFormField(
                             labelText: 'Name',
                             obscureText: false,
-                            controller: controller.txtName),
+                            controller: controller.txtName,
+                            icon: Icons.person),
                         SizedBox(height: height * 0.0138),
                         //todo ---------------------------------------> phone
                         MyTextFormField(
                             labelText: 'Phone',
                             keyBoardType: TextInputType.phone,
-                            controller: controller.txtPhone),
+                            controller: controller.txtPhone,
+                            icon: Icons.phone,),
                         SizedBox(height: height * 0.0138),
                         //todo ---------------------------------------> email
                         MyTextFormField(
                             labelText: 'Email',
-                            controller: controller.txtEmail),
+                            controller: controller.txtEmail,
+                            icon: Icons.email_outlined),
                         SizedBox(height: height * 0.0138),
                         //todo ---------------------------------------> password
                         MyTextFormField(
                             labelText: 'Password',
                             obscureText: true,
-                            controller: controller.txtPassword),
+                            controller: controller.txtPassword,
+                            icon: Icons.lock_outline),
                         SizedBox(height: height * 0.0138),
                         //todo ---------------------------------------> confirm password
                         MyTextFormField(
                             labelText: 'Confirm Password',
                             obscureText: true,
-                            controller: controller.txtConfirmPassword),
+                            controller: controller.txtConfirmPassword,
+                            icon: Icons.lock_outline),
                         SizedBox(height: height * 0.035),
                         //todo ---------------------------------------> signUp button
-                        AnimatedButton(
-                          height: height * 0.071,
-                          width: width * 0.82,
-                          color: const Color(0xffacda4b),
-                          onPressed: () async {
-                            if (_formKey.currentState!.validate() &&
-                                controller.txtPassword.text == controller.txtConfirmPassword.text) {
-                              String response = await AuthService.authService.createUserWithEmailAndPassword(controller.txtEmail.text, controller.txtPassword.text);
-
-                              UserModel userModel = UserModel(
-                                  name: controller.txtName.text,
-                                  email: controller.txtEmail.text,
-                                  image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjZirTv3YUaHSe-VVIQzwXUHXxb8mnJ-krbg&s",
-                                  phone: controller.txtPhone.text,
-                                  token: "----",
-                              );
-
-                              await CloudFireStoreService.cloudFireStoreService.insertUserIntoFireStore(userModel);
-
-                              User? user = AuthService.authService.getCurrentUser();
-                              if (user != null && response == 'success') {
-                                Get.offAll(const HomePage());
-                                showToast( "Account created successfully\n Welcome to QuickChat!!");
-                              } else {
-                                showToast('Email or Password is wrong');
-                              }
-                            }
-                          },
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                                fontFamily: 'pr',
-                                fontSize: width * 0.04,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        // AnimatedButton(
+                        //   height: height * 0.071,
+                        //   width: width * 0.82,
+                        //   color: const Color(0xffacda4b),
+                        //   onPressed: () async {
+                        //     if (_formKey.currentState!.validate() &&
+                        //         controller.txtPassword.text == controller.txtConfirmPassword.text) {
+                        //       String response = await AuthService.authService.createUserWithEmailAndPassword(controller.txtEmail.text, controller.txtPassword.text);
+                        //
+                        //       UserModel userModel = UserModel(
+                        //           name: controller.txtName.text,
+                        //           email: controller.txtEmail.text,
+                        //           image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi2haw1278i40sszGwCvy7LKP3j2KqLTnPJg&s",
+                        //           phone: controller.txtPhone.text,
+                        //           token: "----",
+                        //       );
+                        //
+                        //       await CloudFireStoreService.cloudFireStoreService.insertUserIntoFireStore(userModel);
+                        //       // await CloudFireStoreService.cloudFireStoreService.getCurrentUserFromFireStore();
+                        //
+                        //       User? user = AuthService.authService.getCurrentUser();
+                        //       if (user != null && response == 'success') {
+                        //         Get.offAll(const HomePage());
+                        //         showToast( "Account created successfully\n Welcome to QuickChat!!");
+                        //       } else {
+                        //         showToast('Email or Password is wrong');
+                        //       }
+                        //     }
+                        //   },
+                        //   child: Text(
+                        //     'Sign Up',
+                        //     style: TextStyle(
+                        //         fontFamily: 'pr',
+                        //         fontSize: width * 0.04,
+                        //         fontWeight: FontWeight.bold),
+                        //   ),
+                        // ),
+                        MyButton(onTap: _signUpProcess, title: 'Sign Up'),
                         SizedBox(height: height * 0.048,),
                         //todo ---------------------------------------> go to login
                         GestureDetector(
@@ -172,38 +181,35 @@ class SignUp extends StatelessWidget {
   }
 }
 
+Future<void> _signUpProcess() async {
+  if (_formKey.currentState!.validate() &&
+      controller.txtPassword.text == controller.txtConfirmPassword.text) {
+    String response = await AuthService.authService
+        .createUserWithEmailAndPassword(
+        controller.txtEmail.text, controller.txtPassword.text);
 
-// Widget myColumn(){
-//   return Column(
-//     mainAxisAlignment: MainAxisAlignment.center,
-//     children: [
-//       TextField(
-//         controller: controller.txtEmail,
-//         decoration: const InputDecoration(labelText: 'Email'),
-//       ),
-//       TextField(
-//         controller: controller.txtPassword,
-//         decoration: const InputDecoration(labelText: 'Password'),
-//       ),
-//       const SizedBox(height: 25),
-//       ElevatedButton(
-//           onPressed: () async {
-//             String response = await AuthService.authService.createUserWithEmailAndPassword(
-//                 controller.txtEmail.text, controller.txtPassword.text);
-//
-//             User? user = AuthService.authService.getCurrentUser();
-//             if (user != null && response == 'success') {
-//               Get.off(() => HomePage(
-//                 isFirstTime: true,
-//               ));
-//             } else {
-//               // Get.snackbar('Sign in Failed', response);
-//               showToast('Email or Password is wrong');
-//             }
-//           },
-//           child: const Text('Register')),
-//       const SizedBox(height: 100),
-//       GestureDetector(onTap: (){Get.off(() => const SignIn());},child: Text("Already have account Sign In")),
-//     ],
-//   );
-// }
+    UserModel userModel = UserModel(
+      name: controller.txtName.text,
+      email: controller.txtEmail.text,
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi2haw1278i40sszGwCvy7LKP3j2KqLTnPJg&s",
+      phone: controller.txtPhone.text,
+      token: "----",
+      isOnline: true,
+      isTyping: false,
+      timestamp: Timestamp.now(),
+      about: "Hey there i am using QuickChat",
+    );
+
+    await CloudFireStoreService.cloudFireStoreService.insertUserIntoFireStore(
+        userModel);
+    // await CloudFireStoreService.cloudFireStoreService.getCurrentUserFromFireStore();
+
+    User? user = AuthService.authService.getCurrentUser();
+    if (user != null && response == 'success') {
+      Get.offAll(const HomePage());
+      showToast("Account created successfully\n Welcome to QuickChat!!");
+    } else {
+      showToast('Email or Password is wrong');
+    }
+  }
+}
