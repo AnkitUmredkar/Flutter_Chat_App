@@ -67,26 +67,38 @@ class SearchPage extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.fromLTRB(4, 0, 4, 2),
               child: Obx(
-                () => ListView.builder(
-                  itemCount: chatController.showUsersList.length,
-                  itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: (){
-                      chatController.getReceiver(chatController.showUsersList[index].email!, chatController.showUsersList[index].name!);
-                      Get.to(() => ChatPage(userImg: chatController.showUsersList[index].image!,tag: 'img-${chatController.showUsersList[index].email}',));
-                    },
-                    child: Column(
-                      children: [
-                        CustomUserTile(allUsers: chatController.showUsersList, tag: 'img-${chatController.showUsersList[index].email}', index: index),
-                        Divider(
-                          indent: width * 0.21,
-                          endIndent: 15,
-                          color: controller.isDarkMode.value ? Colors.white24 : Colors.black26,
-                        ),
-                      ],
-                    ),
-                  );
-                },),
+                () => (chatController.showUsersList.length == 0)
+                    ? Center(child: Text("No user found !",style: TextStyle(fontFamily: 'pr'),))
+                    : ListView.builder(
+                        itemCount: chatController.showUsersList.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              chatController.getReceiver(chatController.showUsersList[index].email!, chatController.showUsersList[index].name!);
+                              Get.to(() => ChatPage(
+                                    userImg: chatController.showUsersList[index].image!,
+                                    tag: 'img-${chatController.showUsersList[index].email}',
+                                  ),
+                              );
+                            },
+                            child: Column(
+                              children: [
+                                CustomUserTile(
+                                    allUsers: chatController.showUsersList,
+                                    tag: 'img-${chatController.showUsersList[index].email}',
+                                    index: index),
+                                Divider(
+                                  indent: width * 0.21,
+                                  endIndent: 15,
+                                  color: controller.isDarkMode.value
+                                      ? Colors.white24
+                                      : Colors.black26,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
               ),
             ),
           ),

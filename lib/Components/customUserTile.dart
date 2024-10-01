@@ -23,7 +23,7 @@ class CustomUserTile extends StatelessWidget {
             child: Container(
               height: width * 0.13,
               width: width * 0.13,
-              padding: EdgeInsets.all(2),
+              padding: EdgeInsets.all(2.5),
               decoration: BoxDecoration(
                 border: Border.all(
                     strokeAlign: BorderSide.strokeAlignOutside,
@@ -31,41 +31,43 @@ class CustomUserTile extends StatelessWidget {
                     color: controller.isDarkMode.value
                         ? Colors.green.shade600
                         : Colors.green.shade500),
-                color: controller.isDarkMode.value ? Colors.black : Colors.grey.shade200,
+                color: controller.isDarkMode.value
+                    ? Colors.black
+                    : Colors.grey.shade200,
                 shape: BoxShape.circle,
               ),
-              child: Stack(
-                children: [
-                  ClipOval(
-                    child: FadeInImage(
-                      fit: BoxFit.cover,
-                      placeholder: AssetImage("assets/placeholder.jpeg"),
-                      image: NetworkImage(allUsers[index].image!),
-                      fadeInDuration: Duration(seconds: 1),
-                      fadeOutDuration: Duration(milliseconds: 200),
-                    ),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(allUsers[index].image!),
                   ),
-                  //todo ------------------> if user is Online then show green dot
-                  if (allUsers[index].isOnline)
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Transform.translate(
-                        offset: Offset(2,2),
-                        child: Container(
-                          height: 15,
-                          width: 15,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 1.5,
-                              color: Theme.of(context).colorScheme.surface,
+                ),
+                child: Stack(
+                  children: [
+                    //todo ------------------> if user is Online then show green dot
+                    if (allUsers[index].isOnline)
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: Transform.translate(
+                          offset: Offset(2, 2),
+                          child: Container(
+                            height: 15,
+                            width: 15,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 1.5,
+                                color: Theme.of(context).colorScheme.surface,
+                              ),
+                              shape: BoxShape.circle,
+                              color: Color(0xff4eca1e),
                             ),
-                            shape: BoxShape.circle,
-                            color: Color(0xff4eca1e),
                           ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -84,7 +86,7 @@ class CustomUserTile extends StatelessWidget {
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.inversePrimary,
                           fontFamily: 'pr',
-                          fontSize: width * 0.037,),
+                          ),
                     );
 
                   if (snapshot.connectionState == ConnectionState.waiting) return Text('');
@@ -130,7 +132,6 @@ class CustomUserTile extends StatelessWidget {
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if (!snapshot.hasData || snapshot.data!.docs.isEmpty) return Text('');
               Map data = snapshot.data!.docs[0].data();
-              // DateTime messageTime = data["time"].toDate(); // formattedTime = DateFormat('hh:mm a').format(messageTime);
               return Text(
                   MyDateUtil.getLastMessageTime(data["time"], context),//formattedTime!.toString(),
                   style: TextStyle(

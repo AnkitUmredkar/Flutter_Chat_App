@@ -21,6 +21,8 @@ class CloudFireStoreService {
       'token': user.token,
       'isOnline': user.isOnline,
       'isTyping': user.isTyping,
+      'timestamp': user.timestamp,
+      'about': user.about,
     });
   }
 

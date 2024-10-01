@@ -8,6 +8,7 @@ class MyDateUtil{
 
     if (now.day == sent.day && now.month == sent.month && now.year == sent.year){
       return TimeOfDay.fromDateTime(sent).format(context);
+      // return DateFormat.jm().format(sent);
     }
 
     return "${sent.day} ${_getMonthName(sent)}";

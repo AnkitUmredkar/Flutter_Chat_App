@@ -4,6 +4,7 @@ import 'package:chatting_app/View/SplashScreen/splash_screen.dart';
 import 'package:chatting_app/global.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'Theme/theme.dart';
 import 'firebase_options.dart';
@@ -22,6 +23,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     return Obx(() => GetMaterialApp(
         theme: MyTheme.lightTheme,
         darkTheme: MyTheme.darkTheme,

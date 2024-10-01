@@ -15,7 +15,7 @@ class MyTheme {
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(
-        surface: const Color(0xff0B141B),
+        surface: const Color(0xff12131e),
         primary: Colors.grey.shade600,
         secondary: Color(0xff28282d),//const Color.fromARGB(255, 57, 57, 57),
         tertiary: Colors.grey.shade800,

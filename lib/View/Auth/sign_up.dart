@@ -202,7 +202,6 @@ Future<void> _signUpProcess() async {
 
     await CloudFireStoreService.cloudFireStoreService.insertUserIntoFireStore(
         userModel);
-    // await CloudFireStoreService.cloudFireStoreService.getCurrentUserFromFireStore();
 
     User? user = AuthService.authService.getCurrentUser();
     if (user != null && response == 'success') {
@@ -211,5 +210,8 @@ Future<void> _signUpProcess() async {
     } else {
       showToast('Email or Password is wrong');
     }
+  }
+  else{
+    showToast('Email or Password is wrong');
   }
 }

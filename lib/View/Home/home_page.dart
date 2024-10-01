@@ -74,8 +74,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                       fillColor: Theme.of(context).colorScheme.secondary,//const Color(0xff24252a),
                       hintText: "Search",
                       hintStyle: const TextStyle(fontFamily: 'pr'),
-                      // contentPadding: EdgeInsets.symmetric(
-                      //     vertical: 13.h, horizontal: 15.w),
                       border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(10)),

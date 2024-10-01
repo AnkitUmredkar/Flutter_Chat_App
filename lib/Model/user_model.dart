@@ -39,7 +39,8 @@ class UserModel {
       'token': user.token,
       'isOnline': user.isOnline,
       'isTyping': user.isTyping,
-      'about': user.about
+      'about': user.about,
+      'timestamp': user.timestamp
     };
   }
 }

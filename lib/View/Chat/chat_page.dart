@@ -4,14 +4,11 @@ import 'package:chatting_app/Model/chat_model.dart';
 import 'package:chatting_app/Services/auth_services.dart';
 import 'package:chatting_app/Services/chat_service.dart';
 import 'package:chatting_app/Services/cloud_storage_service.dart';
-import 'package:chatting_app/Services/notification_service.dart';
 import 'package:chatting_app/Services/online_status.dart';
 import 'package:chatting_app/global.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-
 import '../../Components/my_date_util.dart';
 import '../../Services/call services/video_call_service.dart';
 import '../../Services/call services/voice_call_service.dart';
@@ -204,9 +201,10 @@ class _ChatPageState extends State<ChatPage> {
                             itemCount: chatList.length,
                             itemBuilder: (context, index) {
                             DateTime messageTime = chatList[index].time!.toDate();
-                            String formattedTime = DateFormat('hh:mm a').format(messageTime);
+                            // Use TimeOfDay to format according to user settings (AM/PM or 24-hour)
+                            String formattedTime = TimeOfDay.fromDateTime(messageTime).format(context);
                             bool isCurrentUser = chatList[index].sender == AuthService.authService.getCurrentUser()!.email;
-                              return GestureDetector(
+                            return GestureDetector(
                                   onTap: (){
                                     if(isCurrentUser){
                                       chatController.txtMessage.clear();
@@ -253,7 +251,7 @@ class _ChatPageState extends State<ChatPage> {
       await ChatService.chatService.addChatInFireStore(chat);
       chatController.txtMessage.clear();
       chatController.getImage("");
-      await LocalNotificationService.localNotificationService.showNotification(AuthService.authService.getCurrentUser()!.displayName!, chat.message!);
+      // await LocalNotificationService.localNotificationService.showNotification(AuthService.authService.getCurrentUser()!.displayName!, chat.message!);
     }
     scrollDown();
   }
