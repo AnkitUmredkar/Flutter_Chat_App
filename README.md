@@ -49,6 +49,22 @@
 - QuickChat App combines real-time messaging with fun and expressive tools, offering an interactive and vibrant chat experience for everyone. 🎈💬
 
 <h1 align="left"> </h1>
+
+<div align="center">
+  <img height="550" align="left" src="https://github.com/user-attachments/assets/62e51285-1884-41d6-bfc2-40d9b1409efd"/>
+  <img height="550" src="https://github.com/user-attachments/assets/0d21c0eb-f1e2-406f-89f8-68481893b471"/>
+  <img height="550"  align="right" src="https://github.com/user-attachments/assets/1ffd3e64-d122-481f-9fb3-c6fc8658e7ca"/>
+</div>
+
+<h1 align="left"> </h1>
+
+<div align="center">
+<img height="550" src="https://github.com/user-attachments/assets/0ed37778-c969-4a15-a626-2988e74a69cf"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img height="550" src="https://github.com/user-attachments/assets/09be949e-57d7-4cf2-89b7-8a1f1da7ceda"/>
+</div>
+
+<h1 align="left"> </h1>
   
 <h1 align="center"> 🌜 Dark Mode 🌜 </h1>
 
