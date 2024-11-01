@@ -1,7 +1,8 @@
-import 'package:chatting_app/Components/my_textField.dart';
 import 'package:chatting_app/Model/user_model.dart';
 import 'package:chatting_app/Services/auth_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../global.dart';
 
 class CloudFireStoreService {
   CloudFireStoreService._();

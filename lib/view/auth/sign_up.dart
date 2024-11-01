@@ -1,4 +1,3 @@
-import 'package:chatting_app/Components/my_button.dart';
 import 'package:chatting_app/Model/user_model.dart';
 import 'package:chatting_app/Services/auth_services.dart';
 import 'package:chatting_app/Services/cloud_firestore_service.dart';
@@ -7,9 +6,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../Components/my_textField.dart';
 import '../../global.dart';
 import '../Home/home_page.dart';
+import '../components/my_button.dart';
+import '../components/my_textField.dart';
 
 final GlobalKey<FormState> _formKey = GlobalKey();
 
@@ -117,43 +117,6 @@ class SignUp extends StatelessWidget {
                             icon: Icons.lock_outline),
                         SizedBox(height: height * 0.035),
                         //todo ---------------------------------------> signUp button
-                        // AnimatedButton(
-                        //   height: height * 0.071,
-                        //   width: width * 0.82,
-                        //   color: const Color(0xffacda4b),
-                        //   onPressed: () async {
-                        //     if (_formKey.currentState!.validate() &&
-                        //         controller.txtPassword.text == controller.txtConfirmPassword.text) {
-                        //       String response = await AuthService.authService.createUserWithEmailAndPassword(controller.txtEmail.text, controller.txtPassword.text);
-                        //
-                        //       UserModel userModel = UserModel(
-                        //           name: controller.txtName.text,
-                        //           email: controller.txtEmail.text,
-                        //           image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi2haw1278i40sszGwCvy7LKP3j2KqLTnPJg&s",
-                        //           phone: controller.txtPhone.text,
-                        //           token: "----",
-                        //       );
-                        //
-                        //       await CloudFireStoreService.cloudFireStoreService.insertUserIntoFireStore(userModel);
-                        //       // await CloudFireStoreService.cloudFireStoreService.getCurrentUserFromFireStore();
-                        //
-                        //       User? user = AuthService.authService.getCurrentUser();
-                        //       if (user != null && response == 'success') {
-                        //         Get.offAll(const HomePage());
-                        //         showToast( "Account created successfully\n Welcome to QuickChat!!");
-                        //       } else {
-                        //         showToast('Email or Password is wrong');
-                        //       }
-                        //     }
-                        //   },
-                        //   child: Text(
-                        //     'Sign Up',
-                        //     style: TextStyle(
-                        //         fontFamily: 'pr',
-                        //         fontSize: width * 0.04,
-                        //         fontWeight: FontWeight.bold),
-                        //   ),
-                        // ),
                         MyButton(onTap: _signUpProcess, title: 'Sign Up'),
                         SizedBox(height: height * 0.048,),
                         //todo ---------------------------------------> go to login

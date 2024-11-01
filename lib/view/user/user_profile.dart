@@ -1,5 +1,4 @@
 import 'package:animated_button/animated_button.dart';
-import 'package:chatting_app/Components/my_textField.dart';
 import 'package:chatting_app/Services/cloud_firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,3 @@
-import 'package:chatting_app/Components/customUserTile.dart';
 import 'package:chatting_app/Model/user_model.dart';
 import 'package:chatting_app/Services/cloud_firestore_service.dart';
 import 'package:chatting_app/Services/online_status.dart';
@@ -7,7 +6,8 @@ import 'package:chatting_app/View/Search/search_page.dart';
 import 'package:chatting_app/global.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../Components/my_drawer.dart';
+import '../components/customUserTile.dart';
+import '../components/my_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -105,26 +105,25 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                     }
                     List l1 = snapshot.data!.docs;
                     allUsers = l1.map((e) => UserModel.fromMap(e.data())).toList();
-                    return ListView.builder(
+                    return ListView.separated(
                         itemCount: allUsers.length,
                         itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              GestureDetector(
-                                onTap: (){
-                                  chatController.getReceiver(allUsers[index].email!, allUsers[index].name!);
-                                  Get.to(() => ChatPage(userImg: allUsers[index].image!,tag: 'img-${allUsers[index].email}',));
-                                },
-                                child: CustomUserTile(allUsers: allUsers, tag: 'img-${allUsers[index].email}', index: index)
-                              ),
-                              Divider(
-                                indent: width * 0.195,
-                                endIndent: 15,
-                                color: controller.isDarkMode.value ? Colors.white24 : Colors.black26,
-                              ),
-                            ],
+                          return GestureDetector(
+                            onTap: (){
+                              chatController.getReceiver(allUsers[index].email!, allUsers[index].name!);
+                              Get.to(() => ChatPage(userImg: allUsers[index].image!,tag: 'img-${allUsers[index].email}',));
+                            },
+                            child: CustomUserTile(allUsers: allUsers, tag: 'img-${allUsers[index].email}', index: index)
                           );
                         },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          Divider(
+                        indent: width * 0.195,
+                        endIndent: 15,
+                        color: controller.isDarkMode.value
+                            ? Colors.white24
+                            : Colors.black26,
+                      ),
                     );
                   },
                 ),

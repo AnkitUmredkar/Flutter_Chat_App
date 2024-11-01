@@ -10,12 +10,17 @@ class ChatController extends GetxController {
       lastMsg = "".obs,
       image = "".obs;
   RxInt selectedIndex = (-1).obs;
-  RxBool isLongPressed = false.obs, isEdit = false.obs;
+  RxBool isLongPressed = false.obs, isEdit = false.obs,isScroll = false.obs;
   TextEditingController txtMessage = TextEditingController();
   RxList<UserModel> showUsersList = <UserModel>[].obs;
 
+  void showScrollButton(bool value){
+    isScroll.value = value;
+  }
+
    void getImage(String url){
      image.value = url;
+     txtMessage.text = "Send image";//todo if you change here the must be also change in send message method in chat_page.dart
    }
 
   //todo ---------------> get receiver name and email

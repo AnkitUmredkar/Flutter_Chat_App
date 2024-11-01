@@ -1,5 +1,3 @@
-import 'package:chatting_app/Components/my_button.dart';
-import 'package:chatting_app/Components/my_textField.dart';
 import 'package:chatting_app/Services/auth_services.dart';
 import 'package:chatting_app/Services/google_auth_service.dart';
 import 'package:chatting_app/View/Auth/sign_up.dart';
@@ -11,6 +9,8 @@ import 'package:get/get.dart';
 import '../../global.dart';
 import '../../Model/user_model.dart';
 import '../../Services/cloud_firestore_service.dart';
+import '../components/my_button.dart';
+import '../components/my_textField.dart';
 
 GlobalKey<FormState> _formKey = GlobalKey();
 
@@ -120,14 +120,7 @@ class SignIn extends StatelessWidget {
                         //todo ---------------------------------------> text : Or login with
                         Row(
                           children: [
-                            Expanded(
-                              child: Divider(
-                                thickness: 1,
-                                color: Colors.grey.shade300,
-                                indent: 10,
-                                endIndent: 10,
-                              ),
-                            ),
+                            _buildLine(),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 8.0),
                               // Space between divider and text
@@ -140,14 +133,7 @@ class SignIn extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Divider(
-                                thickness: 1,
-                                color: Colors.grey.shade300,
-                                indent: 10,
-                                endIndent: 10,
-                              ),
-                            ),
+                            _buildLine(),
                           ],
                         ),
                         SizedBox(height: height * 0.044),
@@ -177,7 +163,8 @@ class SignIn extends StatelessWidget {
                                   child: buildSignInOption(width, 'assets/LoginPage/google.png', 'Google')),
                             ),
                             SizedBox(width: width * 0.04),
-                            Expanded(child: buildSignInOption(width, 'assets/LoginPage/facebook.png', 'Facebook')),
+                            Expanded(
+                                child: buildSignInOption(width, 'assets/LoginPage/facebook.png', 'Facebook')),
                           ],
                         ),
                         SizedBox(
@@ -224,7 +211,7 @@ Container buildSignInOption(double width, String logo, String label){
     padding: const EdgeInsets.symmetric(vertical: 16),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade300)),
+        border: Border.all(color: Colors.grey.shade400)),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -263,6 +250,17 @@ Future<void> _loginProcess() async {
       showToast('Email or Password is wrong');
     }
   }
+}
+
+Expanded _buildLine() {
+  return Expanded(
+    child: Divider(
+      thickness: 1,
+      color: Colors.grey.shade400,
+      indent: 10,
+      endIndent: 10,
+    ),
+  );
 }
 
 // GestureDetector(

@@ -1,9 +1,9 @@
-import 'package:chatting_app/Components/customUserTile.dart';
 import 'package:chatting_app/global.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Model/user_model.dart';
 import '../Chat/chat_page.dart';
+import '../components/customUserTile.dart';
 
 class SearchPage extends StatelessWidget {
   final List<UserModel> allUsers;
